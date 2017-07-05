@@ -79,7 +79,7 @@ JNIEXPORT jint JNICALL Java_Sample1_intArrayMethod
 void main(){}
 ```
 
-**Step 4) Generate shared library files:**
+**Step 4) Generate your DLL (shared library files):**
 
 * Open "Developer Command Prompt for VS 2017" for x86 or "x64 Native Tools Command Prompt for VS 2017" for x64.
 I use x64
@@ -87,7 +87,7 @@ I use x64
 * Navigate to working directory. ex: 
 `cd C:\Users\Nick\IdeaProjects\native_test\src`
 
-* Generate shared library files:
+* Generate shared library files (you need to do this everytime you update your .cpp files):
 `cl -I"C:\Program Files\Java\jdk1.8.0_20\include" -I"C:\Program Files\Java\jdk1.8.0_20\include\win32" -LD Sample1.cpp -FeSample1.dll`
 
 Note: your includes (`-I"..."`) might be different depending on the location and version of your jdk
@@ -137,3 +137,10 @@ public static void addLibraryPath(String pathToAdd) throws Exception {
 	
 	
 **Step 6) Run project!**
+
+
+**Other Considerations**
+* You can include external libraries, such as OpenCV, by linking them when you compile your DLL. For example:
+```
+cl /I"C:\Program Files (x86)\Java\jdk1.8.0_131\include\win32" /I"C:\Program Files (x86)\Java\jdk1.8.0_131\include" /I"C:\opencv\build\include" /D_USRDLL /D_WINDLL OpenCVNativeTest.cpp C:\opencv\build\x86\vc11\lib\opencv_core2413.lib C:\opencv\build\x86\vc11\lib\opencv_highgui2413.lib C:\opencv\build\x86\vc11\lib\opencv_imgproc2413.lib /link /DLL /OUT:OpenCVNativeTest.dll
+```
