@@ -140,7 +140,16 @@ public static void addLibraryPath(String pathToAdd) throws Exception {
 
 
 **Other Considerations**
-* You can include external libraries, such as OpenCV, by linking them when you compile your DLL. For example:
+
+You can include external libraries, such as OpenCV, by linking them when you compile your DLL. For example:
 ```
-cl /I"C:\Program Files (x86)\Java\jdk1.8.0_131\include\win32" /I"C:\Program Files (x86)\Java\jdk1.8.0_131\include" /I"C:\opencv\build\include" /D_USRDLL /D_WINDLL OpenCVNativeTest.cpp C:\opencv\build\x86\vc11\lib\opencv_core2413.lib C:\opencv\build\x86\vc11\lib\opencv_highgui2413.lib C:\opencv\build\x86\vc11\lib\opencv_imgproc2413.lib /link /DLL /OUT:OpenCVNativeTest.dll
+cl /I"C:\Program Files (x86)\Java\jdk1.8.0_131\include\win32" /I"C:\Program Files (x86)\Java\jdk1.8.0_131\include" /I"C:\opencv\build\include" /D_USRDLL /D_WINDLL Sample1.cpp C:\opencv\build\x86\vc11\lib\opencv_core2413.lib C:\opencv\build\x86\vc11\lib\opencv_highgui2413.lib C:\opencv\build\x86\vc11\lib\opencv_imgproc2413.lib /link /DLL /OUT:Sample1.dll
+```
+Then make sure load to DLLs for any libraries you use. For example:
+```
+//Load DLLS
+System.loadLibrary("OpenCV/opencv_core2413");
+System.loadLibrary("OpenCV/opencv_highgui2413");
+System.loadLibrary("OpenCV/opencv_imgproc2413");
+System.loadLibrary("Sample1");
 ```
