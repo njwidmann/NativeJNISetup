@@ -139,7 +139,7 @@ public static void addLibraryPath(String pathToAdd) throws Exception {
 **Step 6) Run project!**
 
 
-**Other Considerations**
+**External Libraries**
 
 You can include external libraries, such as OpenCV, by linking them when you compile your DLL. For example:
 ```
